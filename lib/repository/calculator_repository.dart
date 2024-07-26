@@ -53,4 +53,8 @@ class CalculatorRepository {
 
     return localStorageService.getDoubleData(key);
   }
+
+  Future<void> removeOneWorkItem(String id) async {
+    await localStorageService.removeItem(id);
+  }
 }

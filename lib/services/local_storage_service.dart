@@ -31,9 +31,6 @@ class LocalStorageService {
 
   Future<double> getDoubleData(String key) async {
     await _checkIfSharedPreferencesHasBeenLoadedFirst();
-    print('is exists object ${_sharedPreferences != null}');
-
-    print('is exists value ${_sharedPreferences?.containsKey(key)}');
 
     return _sharedPreferences?.getDouble(key) ?? 0;
   }
@@ -54,5 +51,11 @@ class LocalStorageService {
     await _checkIfSharedPreferencesHasBeenLoadedFirst();
 
     return _sharedPreferences?.getKeys().toList() ?? const [];
+  }
+
+  Future<void> removeItem(String id) async {
+    await _checkIfSharedPreferencesHasBeenLoadedFirst();
+
+    await _sharedPreferences?.remove(id);
   }
 }

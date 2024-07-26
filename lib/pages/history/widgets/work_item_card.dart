@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mechanic_calculator/cubits/index.dart';
 import 'package:mechanic_calculator/helpers/currency_helper.dart';
 import 'package:mechanic_calculator/models/index.dart';
 import 'package:mechanic_calculator/styles/index.dart';
@@ -37,6 +39,16 @@ class WorkItemCard extends StatelessWidget {
         title: Text('${workItem.componentAmount} Komponen digunakan'),
         subtitle: Text(
           '''Modal: $capitalText\nKeuntungan: $profitText ($profitPercentageText)''',
+        ),
+        trailing: GestureDetector(
+          onTap: () => context.read<HistoryCubit>().removeWorkItem(
+                context,
+                workItem.id,
+              ),
+          child: const Icon(
+            Icons.delete,
+            color: ColorStyle.dangerColor,
+          ),
         ),
       ),
     );
