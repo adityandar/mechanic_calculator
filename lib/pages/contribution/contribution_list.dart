@@ -8,7 +8,11 @@ class ContributionList {
     ),
     ContributionMdl(
       name: 'Anggah',
-      description: 'Sepuh',
+      description: 'BRIDGE88',
+    ),
+    ContributionMdl(
+      name: 'Julizarisya01',
+      description: 'BRIDGE88',
     ),
     ContributionMdl(
       name: 'Fauzan7',
@@ -32,6 +36,10 @@ class ContributionList {
     ),
     ContributionMdl(
       name: 'razemc',
+      description: 'First Youtube Live Viewer',
+    ),
+    ContributionMdl(
+      name: 'Firds Meldova',
       description: 'First Youtube Live Viewer',
     ),
   ];
