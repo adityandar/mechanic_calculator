@@ -1,5 +1,9 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:mechanic_calculator/components/my_snackbar.dart';
+import 'package:mechanic_calculator/cubits/index.dart';
 import 'package:mechanic_calculator/pages/index.dart';
 import 'package:mechanic_calculator/styles/index.dart';
 
@@ -34,7 +38,14 @@ class ActionButtonBottomView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    MySnackbar.show(
+                      context,
+                      title: 'Berhasil',
+                      message: 'Data berhasil disimpan',
+                      contentType: ContentType.success,
+                    );
+                  },
                   child: Text(
                     'SIMPAN',
                     style: TypoStyle.h3(context).copyWith(
@@ -58,7 +69,7 @@ class ActionButtonBottomView extends StatelessWidget {
                       ColorStyle.dangerColor,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: context.read<CalculatorCubit>().resetAllField,
                   child: Text(
                     'BATAL',
                     style: TypoStyle.h3(context).copyWith(

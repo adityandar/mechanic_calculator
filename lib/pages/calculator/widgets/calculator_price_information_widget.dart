@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mechanic_calculator/components/index.dart';
+import 'package:mechanic_calculator/helpers/currency_helper.dart';
 import 'package:mechanic_calculator/styles/index.dart';
 
 class CalculatorPriceInformationWidget extends StatelessWidget {
-  const CalculatorPriceInformationWidget({super.key});
+  const CalculatorPriceInformationWidget({
+    super.key,
+    required this.totalPrice,
+    required this.totalCapital,
+    required this.totalProfit,
+  });
+
+  final int totalPrice;
+  final int totalCapital;
+  final int totalProfit;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +22,9 @@ class CalculatorPriceInformationWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            '\$300.26',
+            CurrencyHelper.formattedDollarMoney(
+              amount: totalPrice,
+            ),
             style: TypoStyle.d3(context).copyWith(
               color: ColorStyle.whiteColor,
               fontWeight: FontWeight.bold,
@@ -38,7 +50,9 @@ class CalculatorPriceInformationWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$200.00',
+                  CurrencyHelper.formattedDollarMoney(
+                    amount: totalCapital,
+                  ),
                   style: TypoStyle.b2(context).copyWith(
                     color: ColorStyle.fullWhiteColor,
                   ),
@@ -59,7 +73,10 @@ class CalculatorPriceInformationWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '+\$20.00',
+                  CurrencyHelper.formattedDollarMoney(
+                    amount: totalProfit,
+                    suffix: '+',
+                  ),
                   style: TypoStyle.b2(context).copyWith(
                     color: ColorStyle.fullWhiteColor,
                   ),

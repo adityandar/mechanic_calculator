@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:mechanic_calculator/cubits/calculator/calculator_cubit.dart';
 import 'package:mechanic_calculator/styles/index.dart';
 
 import '../widgets/index.dart';
@@ -32,7 +34,15 @@ class CalculatorHeaderView extends StatelessWidget {
             ),
           ),
           const Gap(24),
-          const CalculatorPriceInformationWidget(),
+          BlocBuilder<CalculatorCubit, CalculatorState>(
+            builder: (context, state) {
+              return CalculatorPriceInformationWidget(
+                totalPrice: state.totalPrice,
+                totalCapital: state.totalCapital,
+                totalProfit: state.totalProfit,
+              );
+            },
+          ),
           const Gap(24),
         ],
       ),

@@ -67,6 +67,27 @@ class HistoryTotalInformationWidget extends StatelessWidget {
               ],
             ),
           ),
+          const Gap(4),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Total Komponen',
+                  style: TypoStyle.b2(context).copyWith(
+                    color: ColorStyle.fullWhiteColor,
+                  ),
+                ),
+                Text(
+                  '3000',
+                  style: TypoStyle.b2(context).copyWith(
+                    color: ColorStyle.fullWhiteColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
