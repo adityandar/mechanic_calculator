@@ -5,7 +5,18 @@ import 'package:mechanic_calculator/styles/index.dart';
 import '../widgets/index.dart';
 
 class HistoryNotStickyHeaderView extends StatelessWidget {
-  const HistoryNotStickyHeaderView({super.key});
+  const HistoryNotStickyHeaderView({
+    super.key,
+    required this.totalProfit,
+    required this.totalCapital,
+    required this.workAmount,
+    required this.totalComponent,
+  });
+
+  final int totalProfit;
+  final int totalCapital;
+  final int workAmount;
+  final int totalComponent;
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +30,16 @@ class HistoryNotStickyHeaderView extends StatelessWidget {
         ),
       ),
       width: double.infinity,
-      child: const Column(
+      child: Column(
         children: [
-          Gap(12),
-          HistoryTotalInformationWidget(),
-          Gap(24),
+          const Gap(12),
+          HistoryTotalInformationWidget(
+            totalProfit: totalProfit,
+            totalCapital: totalCapital,
+            workAmount: workAmount,
+            totalComponent: totalComponent,
+          ),
+          const Gap(24),
         ],
       ),
     );

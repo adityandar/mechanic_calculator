@@ -1,5 +1,7 @@
 class CommonConstant {
   const CommonConstant._();
 
-  static double componentBasePrice = 0.55;
+  static const componentBasePrice = 0.55;
+  static const localStorageWorkItemPrefix = 'workItem_';
+  static const localStorageProfitPercentageKey = 'profitPercentage';
 }

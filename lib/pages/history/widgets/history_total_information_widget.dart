@@ -1,18 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mechanic_calculator/components/index.dart';
+import 'package:mechanic_calculator/helpers/index.dart';
 import 'package:mechanic_calculator/styles/index.dart';
 
 class HistoryTotalInformationWidget extends StatelessWidget {
-  const HistoryTotalInformationWidget({super.key});
+  const HistoryTotalInformationWidget({
+    super.key,
+    required this.totalProfit,
+    required this.totalCapital,
+    required this.workAmount,
+    required this.totalComponent,
+  });
+
+  final int totalProfit;
+  final int totalCapital;
+  final int workAmount;
+  final int totalComponent;
 
   @override
   Widget build(BuildContext context) {
+    final componentText = totalComponent.toString();
+    final capitalText = CurrencyHelper.formattedDollarMoney(
+      amount: totalCapital,
+    );
+    final profitText = CurrencyHelper.formattedDollarMoney(
+      amount: totalProfit,
+      prefix: '+',
+    );
+    final workAmountText = workAmount.toString();
+
     return PriceInformationBox(
       child: Column(
         children: [
           Text(
-            '+\$300.26',
+            profitText,
             style: TypoStyle.d3(context).copyWith(
               color: ColorStyle.whiteColor,
               fontWeight: FontWeight.bold,
@@ -32,13 +54,34 @@ class HistoryTotalInformationWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
+                  'Total Komponen',
+                  style: TypoStyle.b2(context).copyWith(
+                    color: ColorStyle.fullWhiteColor,
+                  ),
+                ),
+                Text(
+                  componentText,
+                  style: TypoStyle.b2(context).copyWith(
+                    color: ColorStyle.fullWhiteColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Gap(4),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
                   'Total Modal',
                   style: TypoStyle.b2(context).copyWith(
                     color: ColorStyle.fullWhiteColor,
                   ),
                 ),
                 Text(
-                  '\$200.00',
+                  capitalText,
                   style: TypoStyle.b2(context).copyWith(
                     color: ColorStyle.fullWhiteColor,
                   ),
@@ -59,28 +102,7 @@ class HistoryTotalInformationWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '3',
-                  style: TypoStyle.b2(context).copyWith(
-                    color: ColorStyle.fullWhiteColor,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Gap(4),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Total Komponen',
-                  style: TypoStyle.b2(context).copyWith(
-                    color: ColorStyle.fullWhiteColor,
-                  ),
-                ),
-                Text(
-                  '3000',
+                  workAmountText,
                   style: TypoStyle.b2(context).copyWith(
                     color: ColorStyle.fullWhiteColor,
                   ),

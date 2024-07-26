@@ -5,11 +5,11 @@ class CurrencyHelper {
 
   static String formattedDollarMoney({
     required int amount,
-    String suffix = '',
+    String prefix = '',
   }) {
     final dollarSetting = CurrencyFormat(
       code: 'usd',
-      symbol: '$suffix\$',
+      symbol: '$prefix\$',
       symbolSide: SymbolSide.left,
       thousandSeparator: '.',
       decimalSeparator: ',',

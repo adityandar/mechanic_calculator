@@ -75,7 +75,7 @@ class CalculatorPriceInformationWidget extends StatelessWidget {
                 Text(
                   CurrencyHelper.formattedDollarMoney(
                     amount: totalProfit,
-                    suffix: '+',
+                    prefix: '+',
                   ),
                   style: TypoStyle.b2(context).copyWith(
                     color: ColorStyle.fullWhiteColor,

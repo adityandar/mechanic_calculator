@@ -13,91 +13,93 @@ class CalculatorBodyFormView extends StatelessWidget {
     final cubit = context.read<CalculatorCubit>();
 
     return BlocBuilder<CalculatorCubit, CalculatorState>(
-        builder: (context, state) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Jumlah Komponen',
-              style: TypoStyle.b1(context).copyWith(
-                color: ColorStyle.fullWhiteColor,
-                fontWeight: FontWeight.bold,
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Jumlah Komponen',
+                style: TypoStyle.b1(context).copyWith(
+                  color: ColorStyle.fullWhiteColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const Gap(12),
-            TextField(
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
-              ],
-              onTapOutside: (PointerDownEvent event) {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              onChanged: (value) {
-                final valueInNumber = int.tryParse(value) ?? 0;
-                cubit.updateComponentAmount(valueInNumber);
-              },
-              style: const TextStyle(
-                color: ColorStyle.fullWhiteColor,
-              ),
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: ColorStyle.primaryBlueColor,
+              const Gap(12),
+              TextField(
+                key: ValueKey('component_textfield_flag_${state.isLoading}'),
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
+                onTapOutside: (PointerDownEvent event) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                onChanged: (value) {
+                  final valueInNumber = int.tryParse(value) ?? 0;
+                  cubit.updateComponentAmount(valueInNumber);
+                },
+                style: const TextStyle(
+                  color: ColorStyle.fullWhiteColor,
+                ),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: ColorStyle.primaryBlueColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const Gap(24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Persentase Keuntungan',
-                  style: TypoStyle.b1(context).copyWith(
-                    color: ColorStyle.fullWhiteColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  '${state.profitPercentageInHundred}%',
-                  style: TypoStyle.h3(context).copyWith(
-                    color: ColorStyle.fullWhiteColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const Gap(12),
-            Slider(
-              value: state.profitPercentage,
-              onChanged: cubit.updateProfitPercentage,
-            ),
-            Transform(
-              transform: Matrix4.translationValues(0, -10, 0),
-              child: Row(
+              const Gap(24),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '0%',
-                    style: TypoStyle.l3(context).copyWith(
+                    'Persentase Keuntungan',
+                    style: TypoStyle.b1(context).copyWith(
                       color: ColorStyle.fullWhiteColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    '100%',
-                    style: TypoStyle.l3(context).copyWith(
+                    '${state.profitPercentageInHundred}%',
+                    style: TypoStyle.h3(context).copyWith(
                       color: ColorStyle.fullWhiteColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
-      );
-    });
+              const Gap(12),
+              Slider(
+                value: state.profitPercentage,
+                onChanged: cubit.updateProfitPercentage,
+              ),
+              Transform(
+                transform: Matrix4.translationValues(0, -10, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '0%',
+                      style: TypoStyle.l3(context).copyWith(
+                        color: ColorStyle.fullWhiteColor,
+                      ),
+                    ),
+                    Text(
+                      '100%',
+                      style: TypoStyle.l3(context).copyWith(
+                        color: ColorStyle.fullWhiteColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
