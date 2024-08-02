@@ -12,9 +12,9 @@ class CalculatorPriceInformationWidget extends StatelessWidget {
     required this.totalProfit,
   });
 
-  final int totalPrice;
-  final int totalCapital;
-  final int totalProfit;
+  final double totalPrice;
+  final double totalCapital;
+  final double totalProfit;
 
   @override
   Widget build(BuildContext context) {

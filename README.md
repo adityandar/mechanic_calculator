@@ -14,3 +14,13 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# Release Notes:
+
+### 1.0.0
+- Initial release
+
+### 1.0.1
+- Add toggle to enable or disable rounding price
+- Fix bug where total price ocassionally showing incorrect value
+- Fix bug where the component value won't get reset after save data

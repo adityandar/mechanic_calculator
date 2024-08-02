@@ -5,19 +5,23 @@ class WorkItemMdl extends Equatable {
   final int componentAmount;
   final double componentPrice;
   final int profitPercentageInHundred;
+  final bool isRoundAllNumbers;
 
   const WorkItemMdl({
     this.id = '',
     this.componentAmount = 0,
     this.componentPrice = 0,
     this.profitPercentageInHundred = 0,
+    this.isRoundAllNumbers = true,
   });
 
-  int get totalCapital =>
-      (componentAmount * componentPrice).ceilToDouble().toInt();
-  int get totalProfit =>
-      (totalCapital * profitPercentageInHundred / 100).ceilToDouble().toInt();
-  int get totalPrice => totalCapital + totalProfit;
+  double get totalCapital => isRoundAllNumbers
+      ? (componentAmount * componentPrice).roundToDouble()
+      : componentAmount * componentPrice;
+  double get totalProfit => isRoundAllNumbers
+      ? (totalCapital * profitPercentageInHundred / 100).roundToDouble()
+      : totalCapital * profitPercentageInHundred / 100;
+  double get totalPrice => totalCapital + totalProfit;
 
   WorkItemMdl copyWith({
     String? id,
@@ -44,12 +48,15 @@ class WorkItemMdl extends Equatable {
         double.tryParse(stringList.elementAtOrNull(1) ?? '') ?? 0;
     final profitPercentageInHundred =
         int.tryParse(stringList.elementAtOrNull(2) ?? '') ?? 0;
+    final isRoundAllNumbers =
+        bool.tryParse(stringList.elementAtOrNull(3) ?? '') ?? true;
 
     return WorkItemMdl(
       id: id,
       componentAmount: componentAmount,
       componentPrice: componentPrice,
       profitPercentageInHundred: profitPercentageInHundred,
+      isRoundAllNumbers: isRoundAllNumbers,
     );
   }
 
@@ -58,6 +65,7 @@ class WorkItemMdl extends Equatable {
       componentAmount.toString(),
       componentPrice.toString(),
       profitPercentageInHundred.toString(),
+      isRoundAllNumbers.toString(),
     ];
   }
 
@@ -66,5 +74,6 @@ class WorkItemMdl extends Equatable {
         componentAmount,
         componentPrice,
         profitPercentageInHundred,
+        isRoundAllNumbers,
       ];
 }

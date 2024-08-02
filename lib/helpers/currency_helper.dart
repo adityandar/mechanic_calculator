@@ -4,7 +4,7 @@ class CurrencyHelper {
   const CurrencyHelper._();
 
   static String formattedDollarMoney({
-    required int amount,
+    required double amount,
     String prefix = '',
   }) {
     final dollarSetting = CurrencyFormat(

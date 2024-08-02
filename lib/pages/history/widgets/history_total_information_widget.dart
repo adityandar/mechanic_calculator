@@ -13,8 +13,8 @@ class HistoryTotalInformationWidget extends StatelessWidget {
     required this.totalComponent,
   });
 
-  final int totalProfit;
-  final int totalCapital;
+  final double totalProfit;
+  final double totalCapital;
   final int workAmount;
   final int totalComponent;
 

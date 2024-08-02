@@ -28,7 +28,7 @@ class CalculatorBodyFormView extends StatelessWidget {
               ),
               const Gap(12),
               TextField(
-                key: ValueKey('component_textfield_flag_${state.isLoading}'),
+                key: ValueKey('component_textfield_flag_${state.rebuildFlag}'),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly
@@ -74,6 +74,7 @@ class CalculatorBodyFormView extends StatelessWidget {
               const Gap(12),
               Slider(
                 value: state.profitPercentage,
+                divisions: 100,
                 onChanged: cubit.updateProfitPercentage,
               ),
               Transform(
@@ -95,6 +96,27 @@ class CalculatorBodyFormView extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              const Gap(24),
+              Row(
+                children: [
+                  Checkbox(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: const VisualDensity(
+                      horizontal: -4,
+                      vertical: -4,
+                    ),
+                    value: state.isRoundAllNumbers,
+                    onChanged: cubit.updateIsRoundAllNumbers,
+                  ),
+                  const Gap(8),
+                  Text(
+                    'Bulatkan harga',
+                    style: TypoStyle.l1(context).copyWith(
+                      color: ColorStyle.fullWhiteColor,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

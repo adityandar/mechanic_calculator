@@ -17,6 +17,7 @@ class WorkItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(workItem.totalProfit);
     final capitalText = CurrencyHelper.formattedDollarMoney(
       amount: workItem.totalCapital,
     );

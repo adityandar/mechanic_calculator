@@ -13,12 +13,12 @@ class HistoryState extends Equatable {
     this.errorMessage = '',
   });
 
-  int get totalCapital => workItems.fold(
+  double get totalCapital => workItems.fold(
         0,
         (previous, current) => previous + current.totalCapital,
       );
 
-  int get totalProfit => workItems.fold(
+  double get totalProfit => workItems.fold(
         0,
         (previous, current) => previous + current.totalProfit,
       );
