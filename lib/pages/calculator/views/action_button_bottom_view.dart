@@ -87,7 +87,7 @@ class ActionButtonBottomView extends StatelessWidget {
                     ),
                     onPressed: state.isLoading
                         ? null
-                        : context.read<CalculatorCubit>().resetAllField,
+                        : context.read<CalculatorCubit>().cancel,
                     child: state.isLoading
                         ? const CircularProgressIndicator()
                         : Text(

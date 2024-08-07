@@ -6,11 +6,11 @@ class ContributionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = ContributionList.data;
+    const data = ContributionList.data;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Special Thanks To:'),
+        title: const Text('Special Thanks To:'),
       ),
       body: ListView.builder(
         itemCount: data.length,

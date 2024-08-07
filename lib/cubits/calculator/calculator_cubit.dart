@@ -36,12 +36,13 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     emit(state.copyWith(isRoundAllNumbers: isRoundAllNumbers));
   }
 
-  void resetAllField() {
-    emit(const CalculatorState());
-  }
-
-  void callRebuildFlag() {
-    emit(state.copyWith(rebuildFlag: !state.rebuildFlag));
+  void cancel() {
+    emit(
+      state.copyWith(
+        componentAmount: 0,
+        rebuildFlag: !state.rebuildFlag,
+      ),
+    );
   }
 
   Future<void> saveCalculationData(BuildContext context) async {
@@ -56,8 +57,13 @@ class CalculatorCubit extends Cubit<CalculatorState> {
 
       await repository.saveCalculationData(workItem: workItem);
       await repository.saveProfitPercentage(state.profitPercentage);
-      emit(state.copyWith(componentAmount: 0, isLoading: false));
-      callRebuildFlag();
+      emit(
+        state.copyWith(
+          componentAmount: 0,
+          isLoading: false,
+          rebuildFlag: !state.rebuildFlag,
+        ),
+      );
       MySnackbar.show(
         // ignore: use_build_context_synchronously
         context,
