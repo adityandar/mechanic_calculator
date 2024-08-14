@@ -24,6 +24,9 @@ class WorkItemCard extends StatelessWidget {
       amount: workItem.totalProfit,
       prefix: '+',
     );
+    final componentPriceText = CurrencyHelper.formattedDollarMoney(
+      amount: workItem.componentPrice,
+    );
     final profitPercentageText = '${workItem.profitPercentageInHundred}%';
 
     return Card(
@@ -38,7 +41,7 @@ class WorkItemCard extends StatelessWidget {
         ),
         title: Text('${workItem.componentAmount} Komponen digunakan'),
         subtitle: Text(
-          '''Modal: $capitalText\nKeuntungan: $profitText ($profitPercentageText)''',
+          '''Harga Komponen: $componentPriceText\nModal: $capitalText\nKeuntungan: $profitText ($profitPercentageText)''',
         ),
         trailing: GestureDetector(
           onTap: () => context.read<HistoryCubit>().removeWorkItem(

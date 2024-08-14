@@ -18,7 +18,10 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     emit(state.copyWith(isLoading: true));
     try {
       final defaultProfitPercentage = await repository.getProfitPercentage();
+      final componentPrice = await repository.getComponentPrice();
+
       updateProfitPercentage(defaultProfitPercentage);
+      updateComponentPrice(componentPrice);
     } finally {
       emit(state.copyWith(isLoading: false));
     }
@@ -30,6 +33,10 @@ class CalculatorCubit extends Cubit<CalculatorState> {
 
   void updateProfitPercentage(double profitPercentage) {
     emit(state.copyWith(profitPercentage: profitPercentage));
+  }
+
+  void updateComponentPrice(double componentPrice) {
+    emit(state.copyWith(componentPrice: componentPrice));
   }
 
   void updateIsRoundAllNumbers(bool? isRoundAllNumbers) {
@@ -50,13 +57,14 @@ class CalculatorCubit extends Cubit<CalculatorState> {
       emit(state.copyWith(isLoading: true));
       final workItem = WorkItemMdl(
         componentAmount: state.componentAmount,
-        componentPrice: CommonConstant.componentBasePrice,
+        componentPrice: state.componentPrice,
         profitPercentageInHundred: state.profitPercentageInHundred,
         isRoundAllNumbers: state.isRoundAllNumbers,
       );
 
       await repository.saveCalculationData(workItem: workItem);
       await repository.saveProfitPercentage(state.profitPercentage);
+      await repository.saveComponentPrice(state.componentPrice);
       emit(
         state.copyWith(
           componentAmount: 0,

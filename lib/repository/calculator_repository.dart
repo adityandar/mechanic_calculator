@@ -54,6 +54,23 @@ class CalculatorRepository {
     return localStorageService.getDoubleData(key);
   }
 
+  Future<void> saveComponentPrice(double value) async {
+    const key = CommonConstant.localStorageComponentPriceKey;
+
+    await localStorageService.saveDoubleData(key, value);
+  }
+
+  Future<double> getComponentPrice() async {
+    const key = CommonConstant.localStorageComponentPriceKey;
+
+    final price = await localStorageService.getDoubleData(key);
+    if (price == 0.0) {
+      return CommonConstant.componentBasePrice;
+    }
+
+    return price;
+  }
+
   Future<void> removeOneWorkItem(String id) async {
     await localStorageService.removeItem(id);
   }

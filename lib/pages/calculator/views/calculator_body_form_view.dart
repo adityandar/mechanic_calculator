@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:mechanic_calculator/cubits/calculator/calculator_cubit.dart';
+import 'package:mechanic_calculator/pages/index.dart';
 import 'package:mechanic_calculator/styles/index.dart';
 
 class CalculatorBodyFormView extends StatelessWidget {
@@ -19,6 +20,8 @@ class CalculatorBodyFormView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const ComponentPriceView(),
+              const Gap(4),
               Text(
                 'Jumlah Komponen',
                 style: TypoStyle.b1(context).copyWith(
@@ -44,58 +47,26 @@ class CalculatorBodyFormView extends StatelessWidget {
                   color: ColorStyle.fullWhiteColor,
                 ),
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: ColorStyle.primaryBlueColor,
                     ),
                   ),
+                  // TODO(adityandar): add shortcut bottom sheet
+                  // suffixIcon: InkWell(
+                  //   onTap: () {
+                  //     ToolShortcutBottomSheet.show(context);
+                  //   },
+                  //   child: const Icon(
+                  //     Icons.dataset_outlined,
+                  //     color: ColorStyle.fullWhiteColor,
+                  //   ),
+                  // ),
                 ),
               ),
-              const Gap(24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Persentase Keuntungan',
-                    style: TypoStyle.b1(context).copyWith(
-                      color: ColorStyle.fullWhiteColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '${state.profitPercentageInHundred}%',
-                    style: TypoStyle.h3(context).copyWith(
-                      color: ColorStyle.fullWhiteColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              const Gap(12),
-              Slider(
-                value: state.profitPercentage,
-                divisions: 100,
-                onChanged: cubit.updateProfitPercentage,
-              ),
-              Transform(
-                transform: Matrix4.translationValues(0, -10, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '0%',
-                      style: TypoStyle.l3(context).copyWith(
-                        color: ColorStyle.fullWhiteColor,
-                      ),
-                    ),
-                    Text(
-                      '100%',
-                      style: TypoStyle.l3(context).copyWith(
-                        color: ColorStyle.fullWhiteColor,
-                      ),
-                    ),
-                  ],
-                ),
+              ProfitSliderView(
+                cubit: cubit,
+                state: state,
               ),
               const Gap(24),
               Row(

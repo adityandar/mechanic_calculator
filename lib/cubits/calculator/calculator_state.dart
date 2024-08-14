@@ -1,6 +1,7 @@
 part of 'calculator_cubit.dart';
 
 class CalculatorState extends Equatable {
+  final double componentPrice;
   final int componentAmount;
   final double profitPercentage;
   final bool isRoundAllNumbers;
@@ -8,6 +9,7 @@ class CalculatorState extends Equatable {
   final bool rebuildFlag;
 
   const CalculatorState({
+    this.componentPrice = CommonConstant.componentBasePrice,
     this.componentAmount = 0,
     this.profitPercentage = 0,
     this.isRoundAllNumbers = true,
@@ -18,14 +20,15 @@ class CalculatorState extends Equatable {
   int get profitPercentageInHundred => (profitPercentage * 100).toInt();
 
   double get totalCapital => isRoundAllNumbers
-      ? (componentAmount * CommonConstant.componentBasePrice).roundToDouble()
-      : componentAmount * CommonConstant.componentBasePrice;
+      ? (componentAmount * componentPrice).roundToDouble()
+      : componentAmount * componentPrice;
   double get totalProfit => isRoundAllNumbers
       ? (totalCapital * profitPercentage).roundToDouble()
       : totalCapital * profitPercentage;
   double get totalPrice => totalCapital + totalProfit;
 
   CalculatorState copyWith({
+    double? componentPrice,
     int? componentAmount,
     double? profitPercentage,
     bool? isRoundAllNumbers,
@@ -33,6 +36,7 @@ class CalculatorState extends Equatable {
     bool? rebuildFlag,
   }) {
     return CalculatorState(
+      componentPrice: componentPrice ?? this.componentPrice,
       componentAmount: componentAmount ?? this.componentAmount,
       profitPercentage: profitPercentage ?? this.profitPercentage,
       isLoading: isLoading ?? this.isLoading,
@@ -43,6 +47,7 @@ class CalculatorState extends Equatable {
 
   @override
   List<Object?> get props => [
+        componentPrice,
         componentAmount,
         profitPercentage,
         isLoading,
