@@ -24,3 +24,9 @@ samples, guidance on mobile development, and a full API reference.
 - Add toggle to enable or disable rounding price
 - Fix bug where total price ocassionally showing incorrect value
 - Fix bug where the component value won't get reset after save data
+
+### 1.0.2
+- Fix bug where component amount won't reset
+
+### 1.1.0
+- Add new feature to custom component price
