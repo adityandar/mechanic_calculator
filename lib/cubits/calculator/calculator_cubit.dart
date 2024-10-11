@@ -27,7 +27,18 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     }
   }
 
-  void updateComponentAmount(int componentAmount) {
+  void updateComponentAmountValues(String values) {
+    final splittedNumberText = values.split('+');
+    var total = 0;
+    for (final numberText in splittedNumberText) {
+      final number = int.tryParse(numberText) ?? 0;
+      total += number;
+    }
+
+    _updateComponentAmount(total);
+  }
+
+  void _updateComponentAmount(int componentAmount) {
     emit(state.copyWith(componentAmount: componentAmount));
   }
 

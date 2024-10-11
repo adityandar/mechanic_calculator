@@ -32,22 +32,23 @@ class CalculatorBodyFormView extends StatelessWidget {
               const Gap(12),
               TextField(
                 key: ValueKey('component_textfield_flag_${state.rebuildFlag}'),
-                keyboardType: TextInputType.number,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                  signed: true,
+                ),
                 inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9+]')),
+                  FilteringTextInputFormatter.singleLineFormatter,
                 ],
                 onTapOutside: (PointerDownEvent event) {
                   FocusManager.instance.primaryFocus?.unfocus();
                 },
-                onChanged: (value) {
-                  final valueInNumber = int.tryParse(value) ?? 0;
-                  cubit.updateComponentAmount(valueInNumber);
-                },
+                onChanged: cubit.updateComponentAmountValues,
                 style: const TextStyle(
                   color: ColorStyle.fullWhiteColor,
                 ),
                 decoration: const InputDecoration(
-                  border: const OutlineInputBorder(
+                  border: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: ColorStyle.primaryBlueColor,
                     ),
